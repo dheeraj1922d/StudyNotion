@@ -1,25 +1,27 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from 'react'
+import Navbar from './components/Navbar'
+import { Route, Routes } from 'react-router-dom'
+import Login from './pages/Login'
+import Signup from './pages/Signup'
+import Dashboard from './pages/Dashboard'
+import Home from './pages/Home'
 
-function App() {
+const App = () => {
+  const [isLoggin, setIsLoggin] = useState(false);
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="w-screen h-screen bg-[#000814] flex flex-col">
+      <Navbar isLoggin={isLoggin} setIsLoggin={setIsLoggin}/>
+
+      <Routes>
+        <Route path='/' element={<Home/>}/>
+        <Route path='/about' element={<Home/>}/>
+        <Route path='/contact' element={<Home/>}/>
+        <Route path='/login' element={<Login setIsLoggin={setIsLoggin}/>}/>
+        <Route path='/signup' element={<Signup setIsLoggin={setIsLoggin}/>}/>
+        <Route path='/dashboard' element={<Dashboard/>}/>
+      </Routes>
     </div>
-  );
+  )
 }
 
-export default App;
+export default App
